@@ -1,0 +1,118 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  background-image: url(./utils/assets/images/back.png);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  animation: animatedBackground 5s linear;
+  animation-iteration-count: 1;
+}
+
+.backgroundPicture {
+  height: 100%;
+  background-image: url(./utils/assets/images/back.png);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  animation: animatedBackground 5s linear;
+  animation-iteration-count: 1;
+}
+
+.bg-mine {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 20px;
+}
+
+.sidebar {
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(3.1px);
+  border-right: 1px solid rgba(255, 255, 255, 1);
+}
+
+@keyframes animatedBackground {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: center;
+  }
+}
+
+@media screen and (orientation: portrait) {
+  .defaultBackground {
+    background-image: url(./utils/assets/images/bac.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    animation: animatedBackground 30s linear infinite;
+  }
+}
+
+@media screen and (orientation: landscape) {
+  .defaultBackground {
+    background-image: url(./utils/assets/images/bac.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    animation: animatedBackground 10s linear;
+    animation-iteration-count: 1;
+  }
+}
+
+.btn-round {
+  min-width: 45px;
+  min-height: 45px;
+  max-width: 45px;
+  max-height: 45px;
+  border-radius: 100px;
+  color: white;
+  border: none;
+}
+
+.folder {
+  transition: 0.3s;
+}
+
+.folder:hover {
+  scale: 1.03;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px transparent;
+  border-radius: 100px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: black;
+  border-radius: 100px;
+}
