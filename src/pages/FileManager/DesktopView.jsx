@@ -26,6 +26,10 @@ const DesktopView = ({ folders }) => {
   const ref = React.useRef();
 
   useEffect(() => {
+    console.log('folders',folders);
+  }, []);
+
+  useEffect(() => {
     const container_h = document.getElementById("container").offsetHeight;
     const header_h = document.getElementById("header").offsetHeight;
     setRowHeight(container_h - header_h - 30);

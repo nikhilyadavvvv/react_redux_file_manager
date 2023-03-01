@@ -28,6 +28,7 @@ import {
 import Endpoints from "../../utils/repository/Endpoints";
 import b64toBlob from "../../utils/sharedLogics/b64toBlob";
 import Modal from "react-modal";
+import demoPDF from "../../utils/assets/demo.pdf";
 
 Modal.setAppElement("#root");
 
@@ -65,6 +66,11 @@ const MobileView = () => {
     setCurrentSelected(id);
     document.getElementById(id).style.border = "2px solid black";
     openModal();
+
+    setPdfFile(demoPDF);
+    setShowSpinner(false);
+    return;
+    //this code will not run as the changes are done to demonstrate the frontend
     GetRequest(Endpoints.file + fileId).then((res) => {
       console.log(res);
       var blob = b64toBlob(res.body.file_base64, "application/pdf");
