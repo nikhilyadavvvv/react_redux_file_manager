@@ -23,6 +23,7 @@ import { Spinner } from "react-bootstrap";
 import { GetRequest } from "../../repository/RequestMaker";
 import b64toBlob from "../../sharedLogics/b64toBlob";
 import Endpoints from "../../repository/Endpoints";
+import demoPDF from "../../assets/demo.pdf"
 
 Modal.setAppElement("#root");
 
@@ -57,6 +58,13 @@ const SearchView = () => {
   }, [modalIsOpen]);
 
   const onSelect = (fileId) => {
+    setPdfFile(demoPDF);
+    setTimeout(() => {
+      setWindowHeight(document.getElementById("iframe_modal").offsetHeight);
+      setShowSpinner(false);
+    }, 100);
+    return;
+    //this code will not run as the changes are done to demonstrate the frontend
     GetRequest(Endpoints.file + fileId).then((res) => {
       var blob = b64toBlob(res.body.file_base64, "application/pdf");
       setPdfFile(URL.createObjectURL(blob));

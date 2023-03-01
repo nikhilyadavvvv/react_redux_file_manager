@@ -22,14 +22,25 @@ const SearchBar = () => {
     if (searchText !== "") {
       const arr = files.filter((value) => {
         var re = new RegExp(searchText, "gi");
+        console.log(value);
         if (
-          value.Action.match(re) ||
-          value.Filename.match(re) ||
-          value.Titel.match(re) ||
-          value.Version.match(re) ||
-          value.FolderType.match(re)
+          value.Filename &&
+          value.Action &&
+          value.Inhaltstyp &&
+          value.Titel &&
+          value.Version &&
+          value.origional_file_name
         ) {
-          return value;
+          if (
+            value.Filename.match(re) ||
+            value.Action.match(re) ||
+            value.Inhaltstyp.match(re) ||
+            value.Titel.match(re) ||
+            value.Version.match(re) ||
+            value.origional_file_name.match(re)
+          ) {
+            return value;
+          }
         }
       });
       dispatch(setSearchFiles(arr));
@@ -37,6 +48,7 @@ const SearchBar = () => {
       dispatch(setSearchFiles([]));
     }
   }, [searchText]);
+
 
   return (
     <div

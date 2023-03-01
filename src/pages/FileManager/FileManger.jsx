@@ -6,6 +6,7 @@ import useInterval from "../../utils/hooks/useInterval";
 import Endpoints from "../../utils/repository/Endpoints";
 import { GetRequest, PostRequest } from "../../utils/repository/RequestMaker";
 import { addUser, setExpireAt, setLoginAt } from "../Login/loginSlice";
+import demo from "./demo";
 import DesktopView from "./DesktopView";
 import {
   setFiles,
@@ -37,12 +38,17 @@ const FileManger = () => {
     dispatch(setFolderTitle(""));
     console.log("loginAt", loginAt);
     console.log("expireAt", expireAt);
-    if (!user.token) {
-      navigate("/login");
-      return;
-    }
+
+    //this code is commented to demonstrate the frontend
+    // if (!user.token) {
+    //   navigate("/login");
+    //   return;
+    // }
 
     if (folders.length === 0) {
+      dispatch(setFolders(demo.body.data));
+      return;
+      //this code will not run as the changes are done to demonstrate the frontend
       GetRequest(Endpoints.files).then((res) => {
         console.log("res", res);
         dispatch(setFolders(res.body.data));
@@ -50,19 +56,18 @@ const FileManger = () => {
     }
   }, []);
 
-
-
-  useInterval(() => {
-    const currentTime = new Date().toLocaleTimeString("de-DE");
-    if (currentTime > expireAt) {
-      dispatch(addUser({}));
-      dispatch(setLoginAt(""));
-      dispatch(setExpireAt(""));
-      localStorage.clear();
-      navigate("/login");
-    } else {
-    }
-  }, 1000);
+  //this code is commented to demonstrate the frontend
+  // useInterval(() => {
+  //   const currentTime = new Date().toLocaleTimeString("de-DE");
+  //   if (currentTime > expireAt) {
+  //     dispatch(addUser({}));
+  //     dispatch(setLoginAt(""));
+  //     dispatch(setExpireAt(""));
+  //     localStorage.clear();
+  //     navigate("/login");
+  //   } else {
+  //   }
+  // }, 1000);
 
   return (
     <>

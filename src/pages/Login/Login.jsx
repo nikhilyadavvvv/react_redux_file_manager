@@ -16,11 +16,12 @@ import {
   NoAuthPostRequest,
 } from "../../utils/repository/RequestMaker";
 import { setIsRefreshed } from "../FileManager/fileMangerSlice";
+import demoLoginData from "./demoLoginData";
 import { addUser, setExpireAt, setLoginAt } from "./loginSlice";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("test@test.com");
+  const [password, setPassword] = useState("test");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -32,6 +33,21 @@ const Login = () => {
 
   const onSubmit = () => {
     setIsSubmitting(true);
+    //offline test feature
+    if (email === "test@test.com" && password === "test") {
+      setIsSubmitting(false);
+      localStorage.setItem("token", demoLoginData.token);
+      const currentTime = new Date().toLocaleTimeString("de-DE");
+      const _expireAt = new Date("01/01/1970 " + currentTime)
+        .addHours(2)
+        .toLocaleTimeString("de-DE");
+      dispatch(addUser(demoLoginData.data));
+      dispatch(setLoginAt(currentTime));
+      dispatch(setExpireAt(_expireAt));
+      navigate("/");
+      return;
+    }
+    //this code will not run as the changes are done to demonstrate the frontend
     NoAuthPostRequest(
       JSON.stringify({ email, password }),
       Endpoints.login

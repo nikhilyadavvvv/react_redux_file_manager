@@ -27,6 +27,8 @@ import {
 } from "../../utils/repository/RequestMaker";
 import Endpoints from "../../utils/repository/Endpoints";
 import b64toBlob from "../../utils/sharedLogics/b64toBlob";
+import demoPDF from "../../utils/assets/demo.pdf";
+
 const DesktopView = () => {
   const files = useSelector((state) => state.fileManager.files);
   const folderTitle = useSelector((state) => state.fileManager.folderTitle);
@@ -49,12 +51,20 @@ const DesktopView = () => {
     setRowHeight(container_h - header_h - 30);
   }, []);
 
+  useEffect(() => {
+    console.log("files", files);
+  }, []);
+
   const onSelect = (id, fileId) => {
     if (currentSelected !== "") {
       document.getElementById(currentSelected).style.border = "none";
     }
     setCurrentSelected(id);
     document.getElementById(id).style.border = "2px solid black";
+    setShowSpinner(false);
+    setPdfFile(demoPDF);
+    return;
+    //this code will not run as the changes are done to demonstrate the frontend
 
     GetRequest(Endpoints.file + fileId).then((res) => {
       console.log(res);
@@ -63,7 +73,6 @@ const DesktopView = () => {
       setShowSpinner(false);
     });
   };
-
 
   return (
     <LayoutDesktop>
