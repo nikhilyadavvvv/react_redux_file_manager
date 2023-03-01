@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Run App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Test this project [here](https://react-redux-file-manager.netlify.app/).
 
 ## Available Scripts
 
